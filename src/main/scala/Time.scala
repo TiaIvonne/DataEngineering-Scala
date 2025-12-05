@@ -24,19 +24,19 @@ object Time {
    * @return Time
    */
   def fromString(timeStr: String): Time = {
-    val formatted: String = ??? // TODO: Formatea la variable `timeStr` para que tenga 4 caracteres, añadiendo ceros a
+    val formatted: String = timeStr.reverse.padTo(4, '0').reverse // TODO: Formatea la variable `timeStr` para que tenga 4 caracteres, añadiendo ceros a
                                 //  la izquierda si es necesario
-    val hours: Int = ???  // TODO: Extraer las horas de la variable `formatted`, que es un String de 4 caracteres: HHMM
+    val hours: Int = formatted.substring(0,2).toInt  // TODO: Extraer las horas de la variable `formatted`, que es un String de 4 caracteres: HHMM
                           //  Pista: puedes usar el método `substring` de la clase String,
                           //    revisa el dataset para entender el formato de la variable
                           //  Pista: puedes usar el método `toInt` de la clase String
                           //  Pista: recuerda que las horas deben estar entre 0 y 23
-    val minutes: Int = ???  // TODO: Extraer los minutos de la variable `formatted`, que es un String de 4 caracteres: HHMM
+    val minutes: Int = formatted.substring(2,4).toInt  // TODO: Extraer los minutos de la variable `formatted`, que es un String de 4 caracteres: HHMM
                             //  Pista: puedes usar el método `substring` de la clase String,
                             //    revisa el dataset para entender el formato de la variable
                             //  Pista: puedes usar el método `toInt` de la clase String
                             //  Pista: recuerda que los minutos deben estar entre 0 y 59
-    ??? // TODO: Devuelve un objeto Time con las horas y minutos extraídos
+    Time(hours, minutes) // TODO: Devuelve un objeto Time con las horas y minutos extraídos
   }
 
   def fromMinutes(minutes: Int): Time = {

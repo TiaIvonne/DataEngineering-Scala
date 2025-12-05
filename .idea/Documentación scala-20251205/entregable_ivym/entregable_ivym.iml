@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id="root [file:/Users/ivonney.mendoza/repos/Master_UCM_II/Documentación%20scala-20251205/entregable_ivym/]" external.linked.project.path="$MODULE_DIR$/../../../../../Documentación scala-20251205/entregable_ivym" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="SBT" type="JAVA_MODULE" version="4">
+  <component name="DisplayModuleName">
+    <option name="name" value="entregable_ivym" />
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_18" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../../Documentación scala-20251205/entregable_ivym">
+      <excludeFolder url="file://$MODULE_DIR$/../../../../../Documentación scala-20251205/entregable_ivym/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="entregable_ivym.main" />
+    <orderEntry type="module" module-name="entregable_ivym.test" production-on-test="" />
+  </component>
+</module>

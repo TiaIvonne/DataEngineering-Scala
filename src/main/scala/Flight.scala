@@ -16,24 +16,24 @@ case class Flight(flDate: String,
                   scheduledDepTime: Time,
                   scheduledArrTime: Time,
                   depDelay: Double,
-                  arrDelay: Double) {
-  ??? flightDate: FlightDate = ???  // TODO: define el campo flightDate (perezoso e inmutable) de tipo FlightDate a partir del campo flDate
-                                    //    que es de tipo String.
-                                    //    Pista: usa el método fromString de FlightDate
+                  arrDelay: Double) extends Ordered[Flight] {
+  lazy val flightDate: FlightDate = FlightDate.fromString(flDate) // TODO: define el campo flightDate (perezoso e inmutable) de tipo FlightDate a partir del campo flDate
+  //    que es de tipo String.
+  //    Pista: usa el método fromString de FlightDate
 
-  ??? actualDepTime: Time = ??? //  TODO: define el campo actualDepTime (perezoso e inmutable) de tipo Time a partir de los campos
+  lazy val actualDepTime: Time = Time.fromMinutes(scheduledDepTime.asMinutes + depDelay.toInt) //  TODO: define el campo actualDepTime (perezoso e inmutable) de tipo Time a partir de los campos
   //    scheduledDepTime y depDelay
   //    Ten en cuenta que este campo debe representar la hora de salida real del vuelo, esto quiere decir que debe
   //    tener en cuenta el retraso, el campo depDelay representa el retraso en minutos, puede ser negativo y es Double.
   //    Pista: usa el método fromMinutes de Time
 
-  ??? actualArrTime: Time = ??? //  TODO: define el campo actualArrTime (perezoso e inmutable) de tipo Time a partir de los campos
+  lazy val actualArrTime: Time = Time.fromMinutes(scheduledArrTime.asMinutes + arrDelay.toInt) //  TODO: define el campo actualArrTime (perezoso e inmutable) de tipo Time a partir de los campos
   //    scheduledArrTime y arrDelay.
   //    Ten en cuenta que este campo debe representar la hora de llegada real del vuelo, esto quiere decir que debe
   //    tener en cuenta el retraso, el campo arrDelay representa el retraso en minutos, puede ser negativo y es Double.
   //    Pista: usa el método fromMinutes de Time
 
-  ??? isDelayed: Boolean = ??? // TODO: define el atributo inmutable `isDelayed` de tipo Boolean que indica si el vuelo está retrasado o no.
+  val isDelayed: Boolean = depDelay != 0 || arrDelay != 0 // TODO: define el atributo inmutable `isDelayed` de tipo Boolean que indica si el vuelo está retrasado o no.
   //  Pista: un vuelo está retrasado si el campo depDelay o el campo arrDelay son distintos de 0
 
   // TODO: la clase Flight debe poderse ordenar por el campo actualArrTime, para ello la clase debe implementar el trait Ordered
@@ -42,6 +42,9 @@ case class Flight(flDate: String,
   //  Pista: el método compare debe comparar el atributo actualArrTime del objeto que invoque a la función con el
   //    atributo actualArrTime de la clase que se le pasa como parámetro
   //  Pista: actualArrTime es de tipo Time
+
+  override def compare(that: Flight): Int = this.actualArrTime.compare(that.actualArrTime)
+}
 
 object Flight {
   /**
@@ -54,9 +57,10 @@ object Flight {
    * @return Flight
    */
   def fromString(flightInfo: String): Flight = {
-    val columns = ???  //  TODO: genera un array de Strings a partir de la variable flightInfoRow
-                       //    Pista: usa el método split de la clase String
-                       //    Pista: el delimitador está en la configuración
+    /** val columns devuelve un array de strings con todas las columnas del csv */
+    val columns = flightInfo.split(FlightsLoaderConfig.delimiter) //  TODO: genera un array de Strings a partir de la variable flightInfoRow
+    //    Pista: usa el método split de la clase String
+    //    Pista: el delimitador está en la configuración
 
     /**
      * This function is used to get the value of a column from the array of String generated from the row of the csv
@@ -70,8 +74,10 @@ object Flight {
       //    tiene como clave el nombre de la columna y como valor el índice de la columna
       //  Pista: puedes usar el método apply de la clase Array para obtener el valor de la columna
       //    del array de Strings `columns` usando el índice
-      ???
+      val index = FlightsLoaderConfig.columnIndexMap(colName)
+      columns(index)
     }
+
 
     val oriAirport = Airport(
       airportId = getColValue("ORIGIN_AIRPORT_ID").toLong,

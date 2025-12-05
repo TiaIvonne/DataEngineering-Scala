@@ -1,0 +1,10 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/ivonney.mendoza/repos/Master_UCM_II/Documentación scala-20251205/entregable_ivym/src/main/scala/FileUtils.scala:1:12: object ntic is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.ntic.flights.data.{Flight, Row}[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/ivonney.mendoza/repos/Master_UCM_II/Documentación scala-20251205/entregable_ivym/src/main/scala/FlightsLoaderApp.scala:1:12: object ntic is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.ntic.flights.data.{Flight, FlightsFileReport, Row}[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/ivonney.mendoza/repos/Master_UCM_II/Documentación scala-20251205/entregable_ivym/src/main/scala/FlightsLoaderConfig.scala:4:15: not found: type Config[0m
+[0m[[0m[31merror[0m] [0m[0m  val config: Config = ??? // TODO: Carga el fichero de configuración de la aplicación y obtén la configuración para el[0m
+[0m[[0m[31merror[0m] [0m[0m              ^[0m
+[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
