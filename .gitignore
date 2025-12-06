@@ -1,0 +1,50 @@
+# sbt
+target/
+project/target/
+project/project/target/
+.history
+.cache
+*.class
+*.log
+*.cache
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Archivos temporales
+*.swp
+*.swo
+*~
+*.tmp
+
+# Archivos de ensamblado
+*.jar
+!lib/*.jar
+
+# Archivos de datos grandes 
+# flights.csv
+# Documentation.csv
+# Term.csv
+
+# Archivos de salida generados
+output/
+*.obj
+
