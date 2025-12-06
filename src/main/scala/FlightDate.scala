@@ -1,3 +1,5 @@
+
+package org.ntic.flights.data
 /**
  * This class is used to represent a date of a flight
  * @param day: Int

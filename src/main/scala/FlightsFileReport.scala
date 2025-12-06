@@ -1,3 +1,5 @@
+
+package org.ntic.flights.data
 import scala.io.Source
 import scala.util.Try
 

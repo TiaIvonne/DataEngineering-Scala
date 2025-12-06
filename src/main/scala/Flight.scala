@@ -1,3 +1,8 @@
+
+package org.ntic.flights.data
+
+
+
 /**
  * This class is used to represent a flight with its information like the date, origin, destination, scheduled departure time,
  * scheduled arrival time, departure delay and arrival delay.
@@ -58,7 +63,7 @@ object Flight {
    */
   def fromString(flightInfo: String): Flight = {
     /** val columns devuelve un array de strings con todas las columnas del csv */
-    val columns = flightInfo.split(FlightsLoaderConfig.delimiter) //  TODO: genera un array de Strings a partir de la variable flightInfoRow
+    val columns = flightInfo.split(org.ntic.flights.FlightsLoaderConfig.delimiter)//  TODO: genera un array de Strings a partir de la variable flightInfoRow
     //    Pista: usa el método split de la clase String
     //    Pista: el delimitador está en la configuración
 
@@ -74,7 +79,8 @@ object Flight {
       //    tiene como clave el nombre de la columna y como valor el índice de la columna
       //  Pista: puedes usar el método apply de la clase Array para obtener el valor de la columna
       //    del array de Strings `columns` usando el índice
-      val index = FlightsLoaderConfig.columnIndexMap(colName)
+      val headers = org.ntic.flights.FlightsLoaderConfig.headers
+      val index = headers.indexOf(colName)
       columns(index)
     }
 
@@ -114,6 +120,29 @@ object Flight {
     //   Construye un objeto de la clase Flight usando la información que ya está cargada en el objeto de la clase Row
     //   Se deberá crear instancias de Airport para los aeropuertos de origen y destino usando la información el Row
     //   y objetos de la case Time para los horarios de salida y llegada programados, también usando la información de Row.
-    ???
+
+    val oriAirport = Airport(
+      airportId = row.originAirportId,
+      code = row.origin,
+      cityName = row.originCityName,
+      stateAbr = row.originStateAbr
+    )
+    val destAirport = Airport(
+      airportId = row.destAirportId,
+      code = row.dest,
+      cityName = row.destCityName,
+      stateAbr = row.destStateAbr
+    )
+    val scheduledDepTime = Time.fromString(row.depTime)
+    val scheduleArrTime = Time.fromString(row.arrTime)
+    Flight(
+      flDate = row.flDate,
+      origin = oriAirport,
+      dest = destAirport,
+      scheduledDepTime = scheduledDepTime,
+      scheduledArrTime = scheduleArrTime,
+      depDelay = row.depDelay,
+      arrDelay = row.arrDelay
+    )
   }
 }

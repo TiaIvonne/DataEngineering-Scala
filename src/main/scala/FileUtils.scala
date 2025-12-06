@@ -1,5 +1,4 @@
 import org.ntic.flights.data.{Flight, Row}
-
 import java.io.{FileOutputStream, ObjectOutputStream}
 import scala.util.Try
 
