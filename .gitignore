@@ -41,9 +41,8 @@ bin/
 !lib/*.jar
 
 # Archivos de datos grandes 
-flights.csv
-Documentation.csv
-Term.csv
+.csv
+
 
 # Archivos de salida generados
 output/
