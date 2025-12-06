@@ -10,6 +10,7 @@ project/project/target/
 
 # IntelliJ IDEA
 .idea/
+.bsp/
 *.iml
 *.iws
 *.ipr
@@ -40,9 +41,9 @@ bin/
 !lib/*.jar
 
 # Archivos de datos grandes 
-# flights.csv
-# Documentation.csv
-# Term.csv
+flights.csv
+Documentation.csv
+Term.csv
 
 # Archivos de salida generados
 output/
