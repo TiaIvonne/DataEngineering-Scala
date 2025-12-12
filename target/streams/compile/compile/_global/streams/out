@@ -1,7 +1,10 @@
-[0m[[0m[33mwarn[0m] [0m[0m/Users/ivonney.mendoza/repos/Master_UCM_II/Documentación scala-20251205/entregable_ivym/src/main/scala/FlightDate.scala:35:12: patterns after a variable pattern cannot match (SLS 8.1.1)[0m
-[0m[[0m[33mwarn[0m] [0m[0m      case reemplazaEstePatron => // TODO: Comprueba que el día, mes y año son correctos y si lo son devuelve[0m
-[0m[[0m[33mwarn[0m] [0m[0m           ^[0m
-[0m[[0m[33mwarn[0m] [0m[0m/Users/ivonney.mendoza/repos/Master_UCM_II/Documentación scala-20251205/entregable_ivym/src/main/scala/FlightDate.scala:41:17: unreachable code due to variable pattern 'reemplazaEstePatron' on line 35[0m
-[0m[[0m[33mwarn[0m] [0m[0m      case _ => throw new Exception(s"$date tiene un formato inválido")[0m
-[0m[[0m[33mwarn[0m] [0m[0m                ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mtwo warnings found[0m
+[warn] /Users/ivonney.mendoza/repos/Master_UCM_II/Documentación scala-20251205/entregable_ivym/src/main/scala/FlightsFileReport.scala:74:26: match may not be exhaustive.
+[warn] It would fail on the following input: Success(_)
+[warn]         (x: Try[Row]) => x match{
+[warn]                          ^
+[warn] /Users/ivonney.mendoza/repos/Master_UCM_II/Documentación scala-20251205/entregable_ivym/src/main/scala/FlightsFileReport.scala:82:7: match may not be exhaustive.
+[warn] It would fail on the following input: Success(_)
+[warn]       {
+[warn]       ^
+[warn] 1 deprecation (since 2.13.0); re-run with -deprecation for details
+[warn] three warnings found

@@ -52,7 +52,23 @@ object Row {
     //  Pista: usa trim de la clase String para eliminar los espacios en blanco al principio y al final de un String
     //  Pista: usa apply de la clase Row para crear un objeto Row
     //  Pista: para acceder a los elementos de la lista de tokens, usa apply del objeto Seq
-    ???
-
+    val result: Try[Row] = Try {
+      Row(
+        flDate = tokens(0),
+        originAirportId = tokens(1).toLong,
+        origin = tokens(2),
+        originCityName = tokens(3),
+        originStateAbr = tokens(4),
+        destAirportId = tokens(5).toLong,
+        dest = tokens(6),
+        destCityName = tokens(7),
+        destStateAbr = tokens(8),
+        depTime = tokens(9),
+        depDelay = tokens(10).toDouble,
+        arrTime = tokens(11),
+        arrDelay = tokens(12).toDouble
+      )
+    }
+    result
   }
 }

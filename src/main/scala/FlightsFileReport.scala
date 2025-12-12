@@ -1,7 +1,7 @@
 
 package org.ntic.flights.data
 import scala.io.Source
-import scala.util.Try
+import scala.util.{Failure, Try}
 
 /**
  * This class is used to represent a report of the flights file with the valid rows, invalid rows and the flights
@@ -36,7 +36,17 @@ case class FlightsFileReport(validRows: Seq[Row],
     //  Pista: puedes usar `map` de las colecciones
     //  Pista: puedes usar `mkString` de las colecciones para concatenar los elementos de una colección en un string con un separador dado (ver https://www.scala-lang.org/api/current/scala/collection/Iterable.html#mkString-fffff2ca)
     //  Pista: para obtener el nombre de la clase de un objeto puedes usar `getClass.getSimpleName`
-    ???
+    val errorSummarize: Map[String, Int] = invalidRows.groupBy(identity).view.mapValues(_.size).toMap
+    val errorStrings: List[String] = errorSummarize.map {
+      case (error, occurrences) => s"<$error>: $occurrences"
+    }.toList
+    s"""
+       |FlightsReport:
+       | - ${validRows.length} valid rows.
+       | - ${invalidRows.length} invalid rows.
+       |Error summary:
+       |${errorStrings.mkString("\n")}
+       |""".stripMargin
   }
 }
 
@@ -59,6 +69,21 @@ object FlightsFileReport {
     //  Pista: puedes usar `isFailure` de Try para comprobar si el Try es un Failure
     //  Pista: puedes usar `failed` de Try para obtener el error de un Failure
     //  Pista: puedes usar `fromRow` de Flight para crear un Flight a partir de una Row
-    ???
+    val validRows: List[Row] = rows.filter(_.isSuccess).map(_.get).toList
+    val invalidRows: List[String] = rows.filter(_.isFailure).map(
+        (x: Try[Row]) => x match{
+          case Failure(exception) => s"${exception.getClass.getSimpleName}: ${
+            exception.getMessage}"
+        }
+      ).toList
+    val validRowsFlights: List[Try[Flight]] = validRows.map((row: Row) => Try(Flight.fromRow(row)))
+    val flights: List[Flight] = validRowsFlights.filter(_.isSuccess).map(_.get)
+    val invalidFlights: List[String] = validRowsFlights.filter(_.isFailure).map(
+      {
+        case Failure(exception) => s"${exception.getClass.getSimpleName}: ${exception.getMessage}"
+      }
+    )
+    val invalidList: List[String] = invalidRows ++ invalidFlights
+    FlightsFileReport(validRows, invalidList, flights)
   }
 }

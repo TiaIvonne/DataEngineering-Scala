@@ -1,13 +1,16 @@
+package org.ntic.flights
+
+import org.ntic.flights.FlightsLoaderConfig
 import org.ntic.flights.data.{Flight, FlightsFileReport, Row}
 
 import scala.util.Try
 
 object FlightsLoaderApp extends App {
 
-  val fileLines: Seq[String] = ??? // TODO: obtén la lista de líneas del fichero `filePath`
-  val rows: Seq[Try[Row]] = ??? // TODO: obtén la lista de Try[Row] a partir de las líneas del fichero `fileLines`. Pista: usa funciones de FileUtils para ello.
-  val flightReport: FlightsFileReport = ??? // TODO: crea un objeto FlightsFileReport a partir de las filas `rows`. Pista: usa el objeto companion de FlightsFileReport.
-  val flights: Seq[Flight] = ??? // TODO: obtén la lista de vuelos a partir de las filas `rows`. Pista: ya tienes un objeto FlightsFileReport previo con esa información.
+  val fileLines: Seq[String] = FileUtils.getLinesFromFile(FlightsLoaderConfig.filePath) // TODO: obtén la lista de líneas del fichero `filePath`
+  val rows: Seq[Try[Row]] = FileUtils.loadFromFileLines(fileLines) // TODO: obtén la lista de Try[Row] a partir de las líneas del fichero `fileLines`. Pista: usa funciones de FileUtils para ello.
+  val flightReport: FlightsFileReport = FlightsFileReport.fromRows(rows) // TODO: crea un objeto FlightsFileReport a partir de las filas `rows`. Pista: usa el objeto companion de FlightsFileReport.
+  val flights: Seq[Flight] = flightReport.flights // TODO: obtén la lista de vuelos a partir de las filas `rows`. Pista: ya tienes un objeto FlightsFileReport previo con esa información.
 
   // TODO: Itera sobre los aeropuertos filtrados y genera los ficheros de vuelos retrasados y no retrasados por origen.
   //  Pista: puedes usar un bucle-for o foreach para iterar sobre los orígenes de los vuelos.
@@ -30,6 +33,17 @@ object FlightsLoaderApp extends App {
   //    Pista: el path debe concatenar el directorio de salida (outputDir) con el origen del vuelo, la cadena "_delayed"
   //    (sólo aplica para delayedFlightsObj) y la extensión .obj
   //  Pista: Usa FileUtils para escribir los ficheros .obj con los vuelos retrasados y no retrasados en el directorio de salida (outputDir) correspondiente a cada origen de vuelo.
-  ???
+  FlightsLoaderConfig.filteredOrigin.foreach{ originCode =>
+    val filteredFlights = flights.filter(_.origin.code == originCode)
+    val delayedFlights = filteredFlights.filter(_.isDelayed).sorted
+    val notDelayedFlights = filteredFlights.filter(!_.isDelayed).sorted
+
+    val delayedFlightsObj = s"${FlightsLoaderConfig.outputDir}/${originCode}_delayed.obj"
+    val flightsObj = s"${FlightsLoaderConfig.outputDir}/${originCode}.obj"
+
+    FileUtils.writeFile(delayedFlights, delayedFlightsObj)
+    FileUtils.writeFile(notDelayedFlights, flightsObj)
+
+  }
   println(flightReport)
 }
