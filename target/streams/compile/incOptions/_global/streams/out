@@ -1,11 +1,2 @@
-[debug] Created transactional ClassFileManager with tempDir = /Users/ivonney.mendoza/repos/Master_UCM_II/Documentación scala-20251205/entregable_ivym/target/scala-2.13/classes.bak
-[debug] About to delete class files:
-[debug] 	Time$.class
-[debug] 	Time.class
-[debug] We backup class files:
-[debug] 	Time$.class
-[debug] 	Time.class
-[debug] Registering generated classes:
-[debug] 	Time.class
-[debug] 	Time$.class
-[debug] Removing the temporary directory used for backing up class files: /Users/ivonney.mendoza/repos/Master_UCM_II/Documentación scala-20251205/entregable_ivym/target/scala-2.13/classes.bak
+[0m[[0m[0mdebug[0m] [0m[0mCreated transactional ClassFileManager with tempDir = /Users/ivonney.mendoza/repos/Master_UCM_II/Documentación scala-20251205/entregable_ivym/target/scala-2.13/classes.bak[0m
+[0m[[0m[0mdebug[0m] [0m[0mRemoving the temporary directory used for backing up class files: /Users/ivonney.mendoza/repos/Master_UCM_II/Documentación scala-20251205/entregable_ivym/target/scala-2.13/classes.bak[0m

@@ -2,6 +2,7 @@
 package org.ntic.flights.data
 
 import java.time.LocalDate
+import com.sun.media.sound.InvalidFormatException
 
 /**
  * This class is used to represent a date of a flight
@@ -64,7 +65,7 @@ object FlightDate {
       case List(month, day, year) if month < 1 || month > 12 => throw new AssertionError(s"Invalid $month: Month must be between 1 and 12")
       case List(month, day, year) if day < 1 || day > 31 => throw new AssertionError(s"Invalid $day: Day must be vetween 1 and 31")
       case List(month, day,year) if year < 1987 || currentYear < year => throw new AssertionError(s" Invalid $year: Year must be between 1987 and $currentYear")
-      case _ => throw new Exception(s"$date tiene un formato inválido")
+      case _ => throw new InvalidFormatException(s"$date tiene un formato inválido")
     }
   }
 }

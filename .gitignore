@@ -48,3 +48,7 @@ bin/
 output/
 *.obj
 
+# Directorio de entrega temporal
+entregablefinal_iym/
+entregablefinal_iym.zip
+
